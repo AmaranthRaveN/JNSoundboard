@@ -13,7 +13,9 @@ Features:
 * Hotkey that stops currently playing sound
 * Hotkeys that load XML files containing hotkeys
 * Text-to-speech
-
+* Record sound files using specified audio device (as wav format)
+* Set volume for each sound file (0.0 - 1.0 ie: 0% - 100%)
+* Set recording directory to keep recordings in specific location (saved in settings)
 Requires: 
 * .NET Framework 4.6
 * NAudio
