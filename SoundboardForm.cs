@@ -78,6 +78,9 @@ namespace SoundBoard
         /// selecting a board name will display only the sounds saved to that specific board.
         /// This added feature only changes display of sounds on main view, you can still play sounds from other boards that are not displayed.
         /// 
+        /// -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        /// GITHUB INTEGRATION AS OF  v 0.3.3 finished changes
+        /// 
         /// 
         /// Changed: I have changed key listening to listen for all saved hotkeys, so if you have a hotkey on board1 and another hotkey on board2, you can press either hotkey and the sounds will play.
         /// 
