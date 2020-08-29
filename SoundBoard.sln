@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoundBoard", "SoundBoard.csproj", "{47979825-5EE3-4281-B906-B1C9805236FE}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "SetupProject\SetupProject.vdproj", "{6AF2DBBD-68BA-4C50-8D99-C75753D339DF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{47979825-5EE3-4281-B906-B1C9805236FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47979825-5EE3-4281-B906-B1C9805236FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47979825-5EE3-4281-B906-B1C9805236FE}.Debug|x64.ActiveCfg = Release|Any CPU
+		{47979825-5EE3-4281-B906-B1C9805236FE}.Debug|x64.Build.0 = Release|Any CPU
+		{47979825-5EE3-4281-B906-B1C9805236FE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{47979825-5EE3-4281-B906-B1C9805236FE}.Debug|x86.Build.0 = Debug|Any CPU
+		{47979825-5EE3-4281-B906-B1C9805236FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47979825-5EE3-4281-B906-B1C9805236FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47979825-5EE3-4281-B906-B1C9805236FE}.Release|x64.ActiveCfg = Release|Any CPU
+		{47979825-5EE3-4281-B906-B1C9805236FE}.Release|x64.Build.0 = Release|Any CPU
+		{47979825-5EE3-4281-B906-B1C9805236FE}.Release|x86.ActiveCfg = Release|Any CPU
+		{47979825-5EE3-4281-B906-B1C9805236FE}.Release|x86.Build.0 = Release|Any CPU
+		{6AF2DBBD-68BA-4C50-8D99-C75753D339DF}.Debug|Any CPU.ActiveCfg = Debug
+		{6AF2DBBD-68BA-4C50-8D99-C75753D339DF}.Debug|x64.ActiveCfg = Debug
+		{6AF2DBBD-68BA-4C50-8D99-C75753D339DF}.Debug|x86.ActiveCfg = Debug
+		{6AF2DBBD-68BA-4C50-8D99-C75753D339DF}.Release|Any CPU.ActiveCfg = Release
+		{6AF2DBBD-68BA-4C50-8D99-C75753D339DF}.Release|x64.ActiveCfg = Release
+		{6AF2DBBD-68BA-4C50-8D99-C75753D339DF}.Release|x86.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {13A00637-9E41-4EA1-8A7D-20C42333D162}
+	EndGlobalSection
+EndGlobal
