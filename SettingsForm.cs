@@ -16,6 +16,7 @@ namespace SoundBoard
         private bool stopSoundTextPressed = false;
         private bool recSoundTextPressed = false;
         private bool stopRecSoundTextPressed = false;
+        private bool recDirectoryTextPressed = false;
 
         public SettingsForm()
         {
@@ -211,6 +212,18 @@ namespace SoundBoard
             timer1.Enabled = false;
         }
 
+        private void tbRecDirectory_Enter(object sender, EventArgs e)
+        {
+            recDirectoryTextPressed = true;
+            timer1.Enabled = true;
+        }
+
+        private void tbRecDirectory_Leave(object sender, EventArgs e)
+        {
+            recDirectoryTextPressed = false;
+            timer1.Enabled = false;
+        }
+
 
         int lastAmountPressed = 0;
 
@@ -227,6 +240,8 @@ namespace SoundBoard
                     tbRecKey.Text = "";
                 else if (stopRecSoundTextPressed)
                     tbStopRecKey.Text = "";
+                else if (recDirectoryTextPressed)
+                    tbRecDirectory.Text = "";
             }
             else
             {

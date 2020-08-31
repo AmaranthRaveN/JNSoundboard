@@ -264,6 +264,8 @@
             this.tbRecDirectory.ReadOnly = true;
             this.tbRecDirectory.Size = new System.Drawing.Size(354, 20);
             this.tbRecDirectory.TabIndex = 14;
+            this.tbRecDirectory.Enter += new System.EventHandler(this.tbRecDirectory_Enter);
+            this.tbRecDirectory.Leave += new System.EventHandler(this.tbRecDirectory_Leave);
             // 
             // btnBrowseRecDirectory
             // 

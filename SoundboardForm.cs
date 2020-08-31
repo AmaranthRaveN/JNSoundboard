@@ -829,14 +829,24 @@ namespace SoundBoard
                 {
                     Helper.ChangeKey(allSounds, i + 1, i);
                 }
-                MessageBox.Show(soundFileData.Count.ToString());
-                MessageBox.Show(allSounds.Count.ToString());
 
                 //Helper.ChangeKey(soundFileData, removedKey + 1, removedKey);
                 //keysSounds.RemoveAt(lvKeySounds.SelectedIndices[0]);
                 lvKeySounds.Items.Remove(lvKeySounds.SelectedItems[0]);
 
                 if (lvKeySounds.Items.Count == 0) cbEnable.Checked = false;
+            }
+            else if(lvBoards.SelectedItems.Count > 0 && MessageBox.Show("Are you sure you want to remove that board?", "Remove", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                int removedKey = lvBoards.SelectedIndices[0];
+                string removedBoardName = lvBoards.SelectedItems[removedKey].Text;
+                //string removedBoardName = soundBoardData.SoundBoards.v
+                soundBoardData.SoundBoards.Remove(removedBoardName);
+                lvBoards.Items.Remove(lvBoards.SelectedItems[0]);
+                lvBoards.Sort();
+                if (lvBoards.Items.Count == 0) cbEnable.Checked = false;
+
+                
             }
         }
 
@@ -1033,12 +1043,12 @@ namespace SoundBoard
 
                 if ( (playbackWaveOut == null || playbackWaveOut.PlaybackState == PlaybackState.Stopped) && playing )
                 {
+                    playbackWaveOut.Dispose();
                     if (playbackWaveOut != null)
                         playbackWaveOut = null;
                     playing = false;
                     Hotkey.sendKey(pushToTalkKey, false);
                     keyUpPushToTalkKey = false;
-                    playbackWaveOut.Dispose();
                     GC.Collect();
                 }
 
@@ -1854,7 +1864,8 @@ namespace SoundBoard
             //lvBoards.item
             //lvBoards.SelectedItems[0]
             soundFileData.Clear();
-            loadSoundboard(lvBoards.FocusedItem.Text);
+            if(lvBoards.SelectedItems.Count > 0)
+                loadSoundboard(lvBoards.FocusedItem.Text);
         }
 
         private void loadSoundboard(string boardName)
