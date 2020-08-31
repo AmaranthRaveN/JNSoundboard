@@ -9,9 +9,9 @@ Features:
 * Microphone loopback (loops microphone sound through playback device)
 * Add, edit, remove, and clear key combinations
 * Can play a random sound out of multiple (just select multiple files when adding a hotkey)
-* Save (and load) hotkeys to XML file
+* Save (and load) soundfiles/soundboards to JSON file(s).
 * Hotkey that stops currently playing sound
-* Hotkeys that load XML files containing hotkeys
+* Hotkeys that load json files containing hotkeys
 * Text-to-speech
 * Record sound files using specified audio device (as wav format)
 * Set volume for each sound file (0.0 - 1.0 ie: 0% - 100%)
