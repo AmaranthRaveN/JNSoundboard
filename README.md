@@ -22,7 +22,7 @@ Requires:
 
 How to play sound effects over microphone:
 You can't really play it "over" the microphone, however you can route them both through a virtual audio cable.
-To do that, first install a virtual audio cable (I recommend VB-Audio's Cable & Voicemeeter)[VB-CABLE](https://www.vb-audio.com/Cable/index.htm), [VB-Voicemeeter] (https://www.vb-audio.com/Voicemeeter/index.htm), set the playback device to the virtual audio cable, then set the loopback device to your microphone.
+To do that, first install a virtual audio cable (I recommend VB-Audio's Cable & Voicemeeter)[VB-CABLE](https://www.vb-audio.com/Cable/index.htm), [VB-Voicemeeter](https://www.vb-audio.com/Voicemeeter/index.htm), set the playback device to the virtual audio cable, then set the loopback device to your microphone.
 Lastly, in the application that is going to use the microphone, set the microphone device to "VB-Audio Virtual Cable".
 
 Screenshots: 
