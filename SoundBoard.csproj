@@ -100,7 +100,14 @@
     <Compile Include="AddEditHotkeyForm.Designer.cs">
       <DependentUpon>AddEditHotkeyForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Board.cs" />
     <Compile Include="Boards.cs" />
+    <Compile Include="EditBoardForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditBoardForm.Designer.cs">
+      <DependentUpon>EditBoardForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helper.cs" />
     <Compile Include="Hotkey.cs" />
     <Compile Include="JSONSettings.cs" />
@@ -129,6 +136,9 @@
     <Compile Include="XMLSettings.cs" />
     <EmbeddedResource Include="AddEditHotkeyForm.resx">
       <DependentUpon>AddEditHotkeyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditBoardForm.resx">
+      <DependentUpon>EditBoardForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

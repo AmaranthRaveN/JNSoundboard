@@ -70,6 +70,7 @@
             this.tbPushToTalkKey = new System.Windows.Forms.TextBox();
             this.lvBoards = new System.Windows.Forms.ListView();
             this.chBoard = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cmsListView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cbAudioDevices.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.gbSetVolume.SuspendLayout();
@@ -492,6 +493,12 @@
             this.chBoard.Text = "Boards";
             this.chBoard.Width = 150;
             // 
+            // cmsListView
+            // 
+            this.cmsListView.Name = "cmsListView";
+            this.cmsListView.Size = new System.Drawing.Size(61, 4);
+            this.cmsListView.Opening += new System.ComponentModel.CancelEventHandler(this.cmsListView_Opening);
+            // 
             // SoundboardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -570,7 +577,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbPushToTalkKey;
-        private System.Windows.Forms.ListView lvBoards;
         internal System.Windows.Forms.ColumnHeader chBoard;
+        private System.Windows.Forms.ContextMenuStrip cmsListView;
+        internal System.Windows.Forms.ListView lvBoards;
     }
 }

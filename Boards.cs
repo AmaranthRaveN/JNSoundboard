@@ -21,11 +21,21 @@ namespace SoundBoard
 
         public Dictionary<string, IDictionary<int, SoundFile>> SoundBoards { get; set; }
 
+        public Dictionary<string, Board> AllBoards { get; set; }
+
+        //public Dictionary<string, IDictionary<int, Board>> SoundBoards { get; set; }
+
+        //hotkey for random sound file from board
+        //public string rndHotkey { get; set; }
+        //public Keys rndPressedKey { get; set; }
+        //public Keys[] rndKeys { get; set; }
+
 
         public Boards()
         {
             SoundBoard = new Dictionary<int, SoundFile>();
             SoundBoards = new Dictionary<string, IDictionary<int, SoundFile>>();
+            AllBoards = new Dictionary<string, Board>();
         }
 
         
@@ -87,6 +97,8 @@ namespace SoundBoard
             }
 
         }
+
+        
     }
 
    

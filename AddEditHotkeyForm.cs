@@ -265,7 +265,6 @@ namespace SoundBoard
                 else
                     returningSF.keys = new Keys[] { returningSF.pressedKey };
 
-                MessageBox.Show(returningSF.keys.Length.ToString());
 
                 returningSF.filePath = fileName;
                 returningSF.playCount = 0;
@@ -405,6 +404,11 @@ namespace SoundBoard
         }
 
         private void tbKeys_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }

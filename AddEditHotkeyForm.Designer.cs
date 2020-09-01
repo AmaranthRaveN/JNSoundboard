@@ -93,6 +93,7 @@
             this.label1.Size = new System.Drawing.Size(230, 13);
             this.label1.TabIndex = 4;
             this.label1.Text = "Keys (click on text box then press desired keys)";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // labelLoc
             // 
