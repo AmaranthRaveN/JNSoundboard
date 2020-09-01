@@ -8,12 +8,10 @@ Features:
 * Play sounds through any sound device (speakers, virtual audio cable, etc.)
 * Microphone loopback (loops microphone sound through playback device)
 * Add, edit, remove, and clear key combinations
-* Can play a random sound out of multiple (just select multiple files when adding a hotkey)
+* Can play a random sound from a board (just select a board then press edit to give it a hotkey)
 * Save (and load) hotkeys to JSON file
 * Hotkey that stops currently playing sound
-* Hotkeys that load XML files containing hotkeys
-* Text-to-speech
-* Record sound files using specified audio device (as wav format)
+* Record sound files using specified audio device using hotkeys (as wav format)
 * Set volume for each sound file (0.0 - 1.0 ie: 0% - 100%)
 * Set recording directory to keep recordings in specific location (saved in settings)
 Requires: 
