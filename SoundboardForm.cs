@@ -935,8 +935,6 @@ namespace SoundBoard
                 var tempSF = new SoundFile();
                 soundBoardData.AllBoards[lastSelectedBoard].SoundBoard.TryGetValue(lvKeySounds.SelectedIndices[0], out tempSF);
                 //tempBoard.SoundBoard.TryGetValue(lvKeySounds.SelectedIndices[0], out tempSF);
-                MessageBox.Show(tempSF.filePath);
-                MessageBox.Show(tempSF.volume.ToString());
                 playSound(tempSF.filePath, tempSF);
                 //playKeySound(lvKeySounds.SelectedIndices[0]);
             }
