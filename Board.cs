@@ -9,6 +9,7 @@ namespace SoundBoard
 {
     public class Board
     {
+        public string boardName { get; set; }
         public string rndHotkey { get; set; }
         public Keys rndPressedKey { get; set; }
         public Keys[] rndKeys { get; set; }

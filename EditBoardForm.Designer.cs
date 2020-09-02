@@ -75,6 +75,7 @@
             this.tbKeys.TabIndex = 5;
             this.tbKeys.Enter += new System.EventHandler(this.tbKeys_Enter);
             this.tbKeys.Leave += new System.EventHandler(this.tbKeys_Leave);
+            
             // 
             // timer1
             // 

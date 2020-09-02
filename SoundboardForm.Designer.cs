@@ -70,7 +70,10 @@
             this.tbPushToTalkKey = new System.Windows.Forms.TextBox();
             this.lvBoards = new System.Windows.Forms.ListView();
             this.chBoard = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chRndKey = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cmsListView = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.btnReload = new System.Windows.Forms.Button();
+            this.btnNewBoard = new System.Windows.Forms.Button();
             this.cbAudioDevices.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.gbSetVolume.SuspendLayout();
@@ -89,13 +92,14 @@
             this.lvKeySounds.FullRowSelect = true;
             this.lvKeySounds.GridLines = true;
             this.lvKeySounds.HideSelection = false;
-            this.lvKeySounds.Location = new System.Drawing.Point(12, 27);
+            this.lvKeySounds.Location = new System.Drawing.Point(227, 27);
             this.lvKeySounds.MultiSelect = false;
             this.lvKeySounds.Name = "lvKeySounds";
-            this.lvKeySounds.Size = new System.Drawing.Size(532, 316);
+            this.lvKeySounds.Size = new System.Drawing.Size(323, 316);
             this.lvKeySounds.TabIndex = 1;
             this.lvKeySounds.UseCompatibleStateImageBehavior = false;
             this.lvKeySounds.View = System.Windows.Forms.View.Details;
+            this.lvKeySounds.SelectedIndexChanged += new System.EventHandler(this.lvKeySounds_SelectedIndexChanged);
             // 
             // chHotkey
             // 
@@ -202,7 +206,7 @@
             // btnStopAllSounds
             // 
             this.btnStopAllSounds.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStopAllSounds.Location = new System.Drawing.Point(550, 272);
+            this.btnStopAllSounds.Location = new System.Drawing.Point(556, 329);
             this.btnStopAllSounds.Name = "btnStopAllSounds";
             this.btnStopAllSounds.Size = new System.Drawing.Size(75, 43);
             this.btnStopAllSounds.TabIndex = 23;
@@ -214,7 +218,7 @@
             // btnPlaySelectedSound
             // 
             this.btnPlaySelectedSound.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPlaySelectedSound.Location = new System.Drawing.Point(550, 223);
+            this.btnPlaySelectedSound.Location = new System.Drawing.Point(556, 280);
             this.btnPlaySelectedSound.Name = "btnPlaySelectedSound";
             this.btnPlaySelectedSound.Size = new System.Drawing.Size(75, 43);
             this.btnPlaySelectedSound.TabIndex = 22;
@@ -238,7 +242,7 @@
             // btnClear
             // 
             this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClear.Location = new System.Drawing.Point(550, 174);
+            this.btnClear.Location = new System.Drawing.Point(556, 231);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 43);
             this.btnClear.TabIndex = 21;
@@ -274,7 +278,7 @@
             // btnRemove
             // 
             this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRemove.Location = new System.Drawing.Point(550, 125);
+            this.btnRemove.Location = new System.Drawing.Point(556, 182);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(75, 43);
             this.btnRemove.TabIndex = 20;
@@ -286,7 +290,7 @@
             // btnEdit
             // 
             this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEdit.Location = new System.Drawing.Point(550, 76);
+            this.btnEdit.Location = new System.Drawing.Point(556, 133);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(75, 43);
             this.btnEdit.TabIndex = 19;
@@ -298,7 +302,7 @@
             // btnAdd
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.Location = new System.Drawing.Point(550, 27);
+            this.btnAdd.Location = new System.Drawing.Point(556, 84);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 43);
             this.btnAdd.TabIndex = 18;
@@ -311,7 +315,7 @@
             // 
             this.cbEnable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cbEnable.AutoSize = true;
-            this.cbEnable.Location = new System.Drawing.Point(550, 349);
+            this.cbEnable.Location = new System.Drawing.Point(637, 366);
             this.cbEnable.Name = "cbEnable";
             this.cbEnable.Size = new System.Drawing.Size(59, 17);
             this.cbEnable.TabIndex = 29;
@@ -366,16 +370,16 @@
             // 
             this.gbSetVolume.Controls.Add(this.bSetVolume);
             this.gbSetVolume.Controls.Add(this.tbSetVolume);
-            this.gbSetVolume.Location = new System.Drawing.Point(631, 27);
+            this.gbSetVolume.Location = new System.Drawing.Point(637, 27);
             this.gbSetVolume.Name = "gbSetVolume";
-            this.gbSetVolume.Size = new System.Drawing.Size(154, 100);
+            this.gbSetVolume.Size = new System.Drawing.Size(154, 288);
             this.gbSetVolume.TabIndex = 32;
             this.gbSetVolume.TabStop = false;
             this.gbSetVolume.Text = "Set Volume for sound file";
             // 
             // bSetVolume
             // 
-            this.bSetVolume.Location = new System.Drawing.Point(6, 71);
+            this.bSetVolume.Location = new System.Drawing.Point(6, 46);
             this.bSetVolume.Name = "bSetVolume";
             this.bSetVolume.Size = new System.Drawing.Size(142, 23);
             this.bSetVolume.TabIndex = 2;
@@ -401,9 +405,9 @@
             this.gbPushToTalk.Controls.Add(this.label4);
             this.gbPushToTalk.Controls.Add(this.label3);
             this.gbPushToTalk.Controls.Add(this.tbPushToTalkKey);
-            this.gbPushToTalk.Location = new System.Drawing.Point(381, 404);
+            this.gbPushToTalk.Location = new System.Drawing.Point(381, 378);
             this.gbPushToTalk.Name = "gbPushToTalk";
-            this.gbPushToTalk.Size = new System.Drawing.Size(254, 94);
+            this.gbPushToTalk.Size = new System.Drawing.Size(254, 120);
             this.gbPushToTalk.TabIndex = 35;
             this.gbPushToTalk.TabStop = false;
             this.gbPushToTalk.Text = "Auto press push to talk key";
@@ -477,12 +481,13 @@
             // 
             this.lvBoards.Alignment = System.Windows.Forms.ListViewAlignment.Default;
             this.lvBoards.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.chBoard});
+            this.chBoard,
+            this.chRndKey});
             this.lvBoards.GridLines = true;
             this.lvBoards.HideSelection = false;
-            this.lvBoards.Location = new System.Drawing.Point(635, 133);
+            this.lvBoards.Location = new System.Drawing.Point(12, 27);
             this.lvBoards.Name = "lvBoards";
-            this.lvBoards.Size = new System.Drawing.Size(150, 371);
+            this.lvBoards.Size = new System.Drawing.Size(212, 316);
             this.lvBoards.TabIndex = 36;
             this.lvBoards.UseCompatibleStateImageBehavior = false;
             this.lvBoards.View = System.Windows.Forms.View.Details;
@@ -491,7 +496,12 @@
             // chBoard
             // 
             this.chBoard.Text = "Boards";
-            this.chBoard.Width = 150;
+            this.chBoard.Width = 120;
+            // 
+            // chRndKey
+            // 
+            this.chRndKey.Text = "Random Hotkey";
+            this.chRndKey.Width = 90;
             // 
             // cmsListView
             // 
@@ -499,11 +509,38 @@
             this.cmsListView.Size = new System.Drawing.Size(61, 4);
             this.cmsListView.Opening += new System.ComponentModel.CancelEventHandler(this.cmsListView_Opening);
             // 
+            // btnReload
+            // 
+            this.btnReload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnReload.Image = ((System.Drawing.Image)(resources.GetObject("btnReload.Image")));
+            this.btnReload.Location = new System.Drawing.Point(21, 349);
+            this.btnReload.Name = "btnReload";
+            this.btnReload.Size = new System.Drawing.Size(48, 23);
+            this.btnReload.TabIndex = 17;
+            this.btnReload.TabStop = false;
+            this.btnReload.UseVisualStyleBackColor = true;
+            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
+            // 
+            // btnNewBoard
+            // 
+            this.btnNewBoard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNewBoard.Location = new System.Drawing.Point(556, 35);
+            this.btnNewBoard.Name = "btnNewBoard";
+            this.btnNewBoard.Size = new System.Drawing.Size(75, 43);
+            this.btnNewBoard.TabIndex = 37;
+            this.btnNewBoard.TabStop = false;
+            this.btnNewBoard.Text = "New Board";
+            this.btnNewBoard.UseVisualStyleBackColor = true;
+            this.btnNewBoard.Click += new System.EventHandler(this.btnNewBoard_Click);
+            // 
             // SoundboardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(797, 516);
+            this.Controls.Add(this.btnNewBoard);
+            this.Controls.Add(this.cbEnable);
+            this.Controls.Add(this.btnReload);
             this.Controls.Add(this.lvBoards);
             this.Controls.Add(this.gbPushToTalk);
             this.Controls.Add(this.gbSetVolume);
@@ -518,7 +555,6 @@
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.cbEnable);
             this.Controls.Add(this.lvKeySounds);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "SoundboardForm";
@@ -580,5 +616,8 @@
         internal System.Windows.Forms.ColumnHeader chBoard;
         private System.Windows.Forms.ContextMenuStrip cmsListView;
         internal System.Windows.Forms.ListView lvBoards;
+        private System.Windows.Forms.Button btnReload;
+        internal System.Windows.Forms.ColumnHeader chRndKey;
+        private System.Windows.Forms.Button btnNewBoard;
     }
 }
