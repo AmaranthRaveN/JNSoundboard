@@ -13,7 +13,7 @@ Features:
 * Save (and load) hotkeys to JSON file.
 * Hotkey that stops currently playing sound.
 * Record sound files using specified audio device using hotkeys. (as wav format)
-* Set volume for each sound file. (0.0 - 1.0 ie: 0% - 100%)
+* Set volume for each sound file by selecting the soundfile and typing the volume in and pressing set volume. (0.0 - 1.0 ie: 0% - 100%)
 * Set recording directory to keep recordings in specific location. (saved in settings)
 * Set push-to-talk key & window to have the soundboard automatically press PTT key whenever a sound is played, and release when sound is finished.
 * Multiple board support, just create boards and save sounds to them. Select a board to view ONLY the sounds within it to minimize clutter in the soundfile list view.
