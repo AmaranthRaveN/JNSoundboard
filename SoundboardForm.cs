@@ -247,7 +247,6 @@ namespace SoundBoard
                     loopbackSourceStream = null;
                 }
                 
-                //GC.Collect();
             }
             catch (Exception) { }
         }
@@ -419,7 +418,6 @@ namespace SoundBoard
                 //MessageBox.Show("Hi I made it here before breaking");
                 playbackWaveOut.Play(); // breaks on specific audio file :thonking:
 
-                //GC.Collect();
 
 
             }
@@ -466,7 +464,6 @@ namespace SoundBoard
                 //MessageBox.Show("Hi I made it here before breaking");
                 playbackWaveOut.Play(); // breaks on specific audio file :thonking:
 
-                //GC.Collect();
 
 
             }
@@ -902,8 +899,8 @@ namespace SoundBoard
                 lvKeySounds.Items.Clear();
                 lvBoards.Items.Clear();
                 soundFileData.Clear();
-                allSounds.Clear();                                
-                //GC.Collect();
+                allSounds.Clear();
+                soundBoardData = new Boards();
                 soundFileData = new Dictionary<int, SoundFile>();
                 allSounds = new Dictionary<int, SoundFile>();
                 cbEnable.Checked = false;
@@ -1000,7 +997,7 @@ namespace SoundBoard
 
 
                 //string last = jsonLoc;
-                jsonLoc = Boards.userGetJSONLoc();
+            jsonLoc = Boards.userGetJSONLoc();
             
             if (File.Exists(jsonLoc))
                 loadJSONFile(jsonLoc);
@@ -1011,7 +1008,7 @@ namespace SoundBoard
             //soundBoardData.SoundCount = soundFileData.Count;
             //MessageBox.Show("Hi");
             //                .SoundBoards
-            if (oldBoardCount < soundBoardData.AllBoards.Count)
+            if (oldBoardCount < soundBoardData.AllBoards.Count && jsonLoc != "")
             {
                 string input = Interaction.InputBox("Enter a name for the new soundboard you are saving", "Soundboard name", "");
                 if (soundBoardData.AllBoards.ContainsKey(input))
@@ -1026,7 +1023,7 @@ namespace SoundBoard
 
                 }
             }
-            else
+            else if (oldBoardCount == soundBoardData.AllBoards.Count)
             {
                 Board changedBoard = new Board();
                 //changedBoard.SoundBoard = (Dictionary<int, SoundFile>)soundFileData;
@@ -1035,12 +1032,15 @@ namespace SoundBoard
             }
             //1MessageBox.Show("Hi");
 
-
-            Boards.writeJSON(soundBoardData, jsonLoc);
-            //repopulate the boards List view
-            loadJSONFile(jsonLoc);
-            lvKeySounds.Items.Clear();
-            MessageBox.Show("Saved boards");
+            if (jsonLoc != "")
+            {
+                Boards.writeJSON(soundBoardData, jsonLoc);
+                //repopulate the boards List view
+                loadJSONFile(jsonLoc);
+                lvKeySounds.Items.Clear();
+                MessageBox.Show("Saved boards");
+            }
+            
                      
         }
 
@@ -1069,17 +1069,22 @@ namespace SoundBoard
                     else
                     {
                         Board savingBoard = new Board();
-                        soundBoardData.AllBoards.TryGetValue(lvBoards.SelectedItems[0].Text, out savingBoard);
+                        //soundBoardData.AllBoards.TryGetValue(lvBoards.SelectedItems[0].Text, out savingBoard);
                         savingBoard.SoundBoard = (Dictionary<int, SoundFile>)soundFileData;
-
-
+                        soundBoardData.AllBoards.Add(input, savingBoard);
                     }
+
                 }
+                               
                 else
                 {
-                    Board savingBoard = new Board();
-                    soundBoardData.AllBoards.TryGetValue(lastSelectedBoard, out savingBoard);
-                    savingBoard.SoundBoard = (Dictionary<int, SoundFile>)soundFileData;
+                    if (soundBoardData.AllBoards.Count > 0)
+                    {
+                        Board savingBoard = new Board();
+                        soundBoardData.AllBoards.TryGetValue(lastSelectedBoard, out savingBoard);
+                        savingBoard.SoundBoard = (Dictionary<int, SoundFile>)soundFileData;
+                    }
+
                 }
                 
                 Boards.writeJSON(soundBoardData, jsonLoc);
@@ -1087,45 +1092,12 @@ namespace SoundBoard
                 lvKeySounds.Items.Clear();
                 MessageBox.Show("Saved");
             }
-            /*
-            if (xmlLoc == "" || !File.Exists(xmlLoc))
-                xmlLoc = Helper.userGetXMLLoc();
-
-            if (xmlLoc != "")
-            {
-                XMLSettings.WriteXML(new XMLSettings.Settings() { KeysSounds = keysSounds.ToArray() }, xmlLoc);
-
-                MessageBox.Show("Saved");
-            }
-            */
+            
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            /*
-            var diag = new OpenFileDialog();
-
-            diag.Filter = "XML file containing keys and sounds|*.xml";
-
-            var result = diag.ShowDialog();
-            
-            if (result == DialogResult.OK)
-            {
-                string path = diag.FileName;
-                
-                loadXMLFile(path);
-            }
-            
-
-            var diag = new OpenFileDialog();
-            diag.Filter = "json file containing keys and sounds|*.json";
-            var result = diag.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                string path = diag.FileName;
-                loadJSONFile(path);
-            }
-            */
+           
             var diag = new OpenFileDialog();
             diag.Filter = "json file containing soundboards|*.json";
             var result = diag.ShowDialog();
@@ -1156,9 +1128,7 @@ namespace SoundBoard
                     playing = false;
                     Hotkey.sendKey(pushToTalkKey, false);
                     keyUpPushToTalkKey = false;
-                    //GC.Collect();
-                }
-
+                }                
                 int keysPressed = 0;
 
                 // check that soundfiles are loaded
@@ -1175,17 +1145,9 @@ namespace SoundBoard
                         SoundFile tempFile;
                         //soundFileData.TryGetValue(i, out tempFile);
                         allSounds.TryGetValue(i, out tempFile);
-                        /*
-                        if (cbEnablePushToTalk.Checked && !keyUpPushToTalkKey && !Hotkey.IsKeyDown(pushToTalkKey)
-                                    && Helper.isForegroundWindow((string)cbWindows.SelectedItem))
-                        {
-                           
-                            keyUpPushToTalkKey = true;
-                            bool result = Hotkey.sendKey(pushToTalkKey, true);
-                            Thread.Sleep(100);
-                           
-                        }
-                        */
+
+                        
+
 
                         if (JSONSettings.soundboardSettings.StopSoundKeys.Length >= 1)
                         {
@@ -1254,6 +1216,18 @@ namespace SoundBoard
                                             keysPressed++;
                                     if (keysPressed == board.Value.rndKeys.Length)
                                     {
+                                        /*
+                                        if (cbEnablePushToTalk.Checked && !keyUpPushToTalkKey && !Hotkey.IsKeyDown(pushToTalkKey)
+                                            && Helper.isForegroundWindow((string)cbWindows.SelectedItem))
+                                        {
+                                            keyUpPushToTalkKey = true;
+                                            bool result = Hotkey.sendKey(pushToTalkKey, true);
+                                            Thread.Sleep(100);
+
+                                        }
+                                        */
+                                        pushToTalk();
+
                                         keysPressed = 0;
                                         SoundFile randFile;
                                         randFile = board.Value.randomFile();
@@ -1282,15 +1256,18 @@ namespace SoundBoard
                                 }
                                 if (keysPressed == tempFile.keys.Length)
                                 {
+                                    /*
                                     if (cbEnablePushToTalk.Checked && !keyUpPushToTalkKey && !Hotkey.IsKeyDown(pushToTalkKey)
                                     && Helper.isForegroundWindow((string)cbWindows.SelectedItem))
                                     {
-
                                         keyUpPushToTalkKey = true;
                                         bool result = Hotkey.sendKey(pushToTalkKey, true);
-                                        //Thread.Sleep(100);
+                                        Thread.Sleep(100);
 
                                     }
+                                    */
+                                    pushToTalk();
+
                                     //playKeySound(i);
                                     playSound(tempFile);
 
@@ -1306,6 +1283,7 @@ namespace SoundBoard
 
                             if (Hotkey.IsKeyDown(tempFile.pressedKey))
                             {
+                                /*
                                 if (cbEnablePushToTalk.Checked && !keyUpPushToTalkKey && !Hotkey.IsKeyDown(pushToTalkKey)
                                     && Helper.isForegroundWindow((string)cbWindows.SelectedItem))
                                 {
@@ -1315,6 +1293,8 @@ namespace SoundBoard
                                     //Thread.Sleep(100);
 
                                 }
+                                */
+                                pushToTalk();
                                 //playKeySound(i);
                                 playSound(tempFile);
                                 Thread.Sleep(150);
@@ -1324,221 +1304,7 @@ namespace SoundBoard
                         }
 
                     }
-                    /*
-                    if(JSONSettings.soundboardSettings.StopSoundKeys != null && JSONSettings.soundboardSettings.StopSoundKeys.Length > 0)
-                    {
-                        for (int i = 0; i < JSONSettings.soundboardSettings.StopSoundKeys.Length; i++)
-                        {
-                            if (Hotkey.IsKeyDown(JSONSettings.soundboardSettings.StopSoundKeys[i])) keysPressed++;
-                            Thread.Sleep(100);
-                        }
-                        if (keysPressed == JSONSettings.soundboardSettings.StopSoundKeys.Length)
-                        {
-                            if (keysJustPressed == null || !keysJustPressed.Intersect(JSONSettings.soundboardSettings.StopSoundKeys).Any())
-                            {
-                                if (playbackWaveOut != null && playbackWaveOut.PlaybackState == PlaybackState.Playing) playbackWaveOut.Stop();
-
-                                keysJustPressed = JSONSettings.soundboardSettings.StopSoundKeys;
-
-                                return;
-                            }
-                        }
-                        else if (keysJustPressed == JSONSettings.soundboardSettings.StopSoundKeys)
-                            keysJustPressed = null;
-
-                        keysPressed = 0;
-                    }
-                    
-                    if(JSONSettings.soundboardSettings.RecSoundKeys != null && JSONSettings.soundboardSettings.RecSoundKeys.Length > 0)
-                    {
-                        for(int i = 0; i < JSONSettings.soundboardSettings.RecSoundKeys.Length; i++)
-                        {
-                            if (Hotkey.IsKeyDown(JSONSettings.soundboardSettings.RecSoundKeys[i])) keysPressed++;
-                            Thread.Sleep(100);
-                        }
-                        if (keysPressed == JSONSettings.soundboardSettings.RecSoundKeys.Length)
-                        {
-
-                            if (keysJustPressed == null || !keysJustPressed.Intersect(JSONSettings.soundboardSettings.RecSoundKeys).Any())
-                            {
-
-                                if (recordWave == null && !recording) recordSound();
-                                keysJustPressed = JSONSettings.soundboardSettings.RecSoundKeys;
-                                return;
-                            }
-                        }
-                        else if (keysJustPressed == JSONSettings.soundboardSettings.RecSoundKeys)
-                            keysJustPressed = null;
-                        keysPressed = 0;
-                    }
-                    
-                    if (JSONSettings.soundboardSettings.StopRecSoundKeys != null && JSONSettings.soundboardSettings.StopRecSoundKeys.Length > 0)
-                    {
-                        for (int i = 0; i < JSONSettings.soundboardSettings.StopRecSoundKeys.Length; i++)
-                        {
-                            if (Hotkey.IsKeyDown(JSONSettings.soundboardSettings.StopRecSoundKeys[i])) keysPressed++;
-                        }
-                        if (keysPressed == JSONSettings.soundboardSettings.StopRecSoundKeys.Length)
-                        {
-                            if (keysJustPressed == null || !keysJustPressed.Intersect(JSONSettings.soundboardSettings.StopRecSoundKeys).Any())
-                            {
-                                if (recordWave != null && recording) stopRecordSound();
-                                keysJustPressed = JSONSettings.soundboardSettings.StopRecSoundKeys;
-                                return;
-                            }
-                        }
-                        else if (keysJustPressed == JSONSettings.soundboardSettings.StopRecSoundKeys)
-                            keysJustPressed = null;
-                        keysPressed = 0;
-                    }
-                    
-                    if (JSONSettings.soundboardSettings.LoadJSONFiles != null && JSONSettings.soundboardSettings.LoadJSONFiles.Length > 0) //check that required keys are pressed to load XML file
-                    {
-                        for (int i = 0; i < JSONSettings.soundboardSettings.LoadJSONFiles.Length; i++)
-                        {
-                            if (JSONSettings.soundboardSettings.LoadJSONFiles[i].Keys.Length == 0) continue;
-
-                            keysPressed = 0;
-
-                            for (int j = 0; j < JSONSettings.soundboardSettings.LoadJSONFiles[i].Keys.Length; j++)
-                            {
-                                if (Hotkey.IsKeyDown(JSONSettings.soundboardSettings.LoadJSONFiles[i].Keys[j])) keysPressed++;
-                            }
-
-                            if (keysPressed == JSONSettings.soundboardSettings.LoadJSONFiles[i].Keys.Length)
-                            {
-                                if (keysJustPressed == null || !keysJustPressed.Intersect(JSONSettings.soundboardSettings.LoadJSONFiles[i].Keys).Any())
-                                {
-                                    if (!string.IsNullOrWhiteSpace(JSONSettings.soundboardSettings.LoadJSONFiles[i].JSONLocation) && File.Exists(JSONSettings.soundboardSettings.LoadJSONFiles[i].JSONLocation))
-                                    {
-                                        keysJustPressed = JSONSettings.soundboardSettings.LoadJSONFiles[i].Keys;
-
-                                        loadXMLFile(JSONSettings.soundboardSettings.LoadJSONFiles[i].JSONLocation);
-                                    }
-
-                                    return;
-                                }
-                            }
-                            else if (keysJustPressed == JSONSettings.soundboardSettings.LoadJSONFiles[i].Keys)
-                            {
-                                keysJustPressed = null;
-                            }
-                        }
-
-                        keysPressed = 0;
-                    }
-                    */
-                    /*
-                    for (int i = 0; i < soundFileData.Count; i++)
-                    {
-                        keysPressed = 0;
-                        
-                        //if (keysSounds[i].Keys.Length == 0) continue;
-
-                        for (int j = 0; j < keysSounds[i].Keys.Length; j++)
-                        {
-                            if (Hotkey.IsKeyDown(keysSounds[i].Keys[j]))
-                                keysPressed++;
-                        }
-
-                        if (keysPressed == keysSounds[i].Keys.Length)
-                        {
-                            //if (keysJustPressed == keysSounds[i].Keys) continue;
-
-                            if (keysSounds[i].Keys.Length > 0 && keysSounds[i].Keys.All(x => x != 0) && keysSounds[i].SoundLocations.Length > 0
-                                && keysSounds[i].SoundLocations.Length > 0 && keysSounds[i].SoundLocations.Any(x => File.Exists(x)))
-                            {
-                                if (cbEnablePushToTalk.Checked && !keyUpPushToTalkKey && !Hotkey.IsKeyDown(pushToTalkKey)
-                                    && Helper.isForegroundWindow((string)cbWindows.SelectedItem))
-                                {
-                                    keyUpPushToTalkKey = true;
-                                    bool result = Hotkey.sendKey(pushToTalkKey, true);
-                                    Thread.Sleep(100);
-                                }
-
-                                playKeySound(keysSounds[i]);
-                                return;
-                            }
-                        }
-                        else if (keysJustPressed == keysSounds[i].Keys)
-                            keysJustPressed = null;
-                    }
-
-                    keysPressed = 0;
-                }
-
-                /*
-                if (XMLSettings.soundboardSettings.StopSoundKeys != null && XMLSettings.soundboardSettings.StopSoundKeys.Length > 0) //check that required keys are pressed to stop all sounds
-                {
-                    for (int i = 0; i < XMLSettings.soundboardSettings.StopSoundKeys.Length; i++)
-                    {
-                        if (Hotkey.IsKeyDown(XMLSettings.soundboardSettings.StopSoundKeys[i])) keysPressed++;
-                    }
-
-                    if (keysPressed == XMLSettings.soundboardSettings.StopSoundKeys.Length)
-                    {
-                        if (keysJustPressed == null || !keysJustPressed.Intersect(XMLSettings.soundboardSettings.StopSoundKeys).Any())
-                        {
-                            if (playbackWaveOut != null && playbackWaveOut.PlaybackState == PlaybackState.Playing) playbackWaveOut.Stop();
-
-                            keysJustPressed = XMLSettings.soundboardSettings.StopSoundKeys;
-
-                            return;
-                        }
-                    }
-                    else if (keysJustPressed == XMLSettings.soundboardSettings.StopSoundKeys)
-                        keysJustPressed = null;
-
-                    keysPressed = 0;
-                }
-
-                if (XMLSettings.soundboardSettings.LoadXMLFiles != null && XMLSettings.soundboardSettings.LoadXMLFiles.Length > 0) //check that required keys are pressed to load XML file
-                {
-                    for (int i = 0; i < XMLSettings.soundboardSettings.LoadXMLFiles.Length; i++)
-                    {
-                        if (XMLSettings.soundboardSettings.LoadXMLFiles[i].Keys.Length == 0) continue;
-
-                        keysPressed = 0;
-
-                        for (int j = 0; j < XMLSettings.soundboardSettings.LoadXMLFiles[i].Keys.Length; j++)
-                        {
-                            if (Hotkey.IsKeyDown(XMLSettings.soundboardSettings.LoadXMLFiles[i].Keys[j])) keysPressed++;
-                        }
-
-                        if (keysPressed == XMLSettings.soundboardSettings.LoadXMLFiles[i].Keys.Length)
-                        {
-                            if (keysJustPressed == null || !keysJustPressed.Intersect(XMLSettings.soundboardSettings.LoadXMLFiles[i].Keys).Any())
-                            {
-                                if (!string.IsNullOrWhiteSpace(XMLSettings.soundboardSettings.LoadXMLFiles[i].XMLLocation) && File.Exists(XMLSettings.soundboardSettings.LoadXMLFiles[i].XMLLocation))
-                                {
-                                    keysJustPressed = XMLSettings.soundboardSettings.LoadXMLFiles[i].Keys;
-
-                                    loadXMLFile(XMLSettings.soundboardSettings.LoadXMLFiles[i].XMLLocation);
-                                }
-
-                                return;
-                            }
-                        }
-                        else if (keysJustPressed == XMLSettings.soundboardSettings.LoadXMLFiles[i].Keys)
-                        {
-                            keysJustPressed = null;
-                        }
-                    }
-
-                    keysPressed = 0;
-                }
-
-                if (keyUpPushToTalkKey)
-                {
-                    if (!Hotkey.IsKeyDown(pushToTalkKey)) keyUpPushToTalkKey = false;
-
-                    if (playbackWaveOut.PlaybackState != PlaybackState.Playing || !Helper.isForegroundWindow((string)cbWindows.SelectedItem))
-                    {
-                        keyUpPushToTalkKey = false;
-                        Hotkey.sendKey(pushToTalkKey, false);
-                    }
-                }
-                */
+           
                 }
             }
         }
@@ -1733,6 +1499,11 @@ namespace SoundBoard
             //soundBoardData.SoundCount = soundFileData.Count;
             //MessageBox.Show("Hi");
             //                .SoundBoards
+            if(lvKeySounds.Items.Count > 0)
+            {
+                //Create fresh board, clear what is visible.
+                lvKeySounds.Items.Clear();
+            }
             soundFileData.Clear();
             if (soundBoardData.AllBoards.ContainsKey(input))
             {
@@ -1743,7 +1514,6 @@ namespace SoundBoard
                     //addedBoard.SoundBoard = (Dictionary<int, SoundFile>)soundFileData;
 
                 }
-                //MessageBox.Show("Are you sure remove that item?", "Remove", MessageBoxButtons.YesNo) == DialogResult.Yes
             }
             else
             {
@@ -1759,6 +1529,18 @@ namespace SoundBoard
             loadJSONFile(jsonLoc);
             lvKeySounds.Items.Clear();
 
+        }
+
+        private void pushToTalk()
+        {
+            if (cbEnablePushToTalk.Checked && !keyUpPushToTalkKey && !Hotkey.IsKeyDown(pushToTalkKey))
+                                    //&& Helper.isForegroundWindow((string)cbWindows.SelectedItem))
+            {
+                keyUpPushToTalkKey = true;
+                bool result = Hotkey.sendKey(pushToTalkKey, true);
+                Thread.Sleep(100);
+
+            }
         }
     }
     public class VolumeEventArgs : EventArgs

@@ -134,7 +134,7 @@ namespace SoundBoard
         {
             int amountPressed = 0;
 
-            if (Keyboard.IsKeyDown(Keys.Escape))
+            if (Hotkey.IsKeyDown(Keys.Escape))
             {
                 lastAmountPressed = 50;
 
@@ -146,7 +146,7 @@ namespace SoundBoard
 
                 foreach (Keys key in Enum.GetValues(typeof(Keys)))
                 {
-                    if (Keyboard.IsKeyDown(key))
+                    if (Hotkey.IsKeyDown(key))
                     {
                         amountPressed++;
                         pressedKeys.Add(key);

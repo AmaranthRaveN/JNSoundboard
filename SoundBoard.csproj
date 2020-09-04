@@ -111,7 +111,6 @@
     <Compile Include="Helper.cs" />
     <Compile Include="Hotkey.cs" />
     <Compile Include="JSONSettings.cs" />
-    <Compile Include="Keyboard.cs" />
     <Compile Include="SettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,7 +132,6 @@
     <Compile Include="TextToSpeechForm.Designer.cs">
       <DependentUpon>TextToSpeechForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="XMLSettings.cs" />
     <EmbeddedResource Include="AddEditHotkeyForm.resx">
       <DependentUpon>AddEditHotkeyForm.cs</DependentUpon>
     </EmbeddedResource>

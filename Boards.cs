@@ -45,7 +45,8 @@ namespace SoundBoard
             //MessageBox.Show(boards.SoundBoards.Count.ToString());
 
             var jsonSerial = JsonConvert.SerializeObject(boards, Formatting.Indented);
-            File.WriteAllText(jsonloc, jsonSerial);
+            if(jsonloc != null)
+                File.WriteAllText(jsonloc, jsonSerial);
             //var jsonSerial = JsonConvert.SerializeObject(boards, Formatting.Indented);
             //File.WriteAllText(jsonloc, jsonSerial);
         }
